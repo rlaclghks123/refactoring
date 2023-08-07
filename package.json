@@ -12,7 +12,14 @@
     "nodemon": "^2.0.7"
   },
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon --exec 'ts-node' ch8/함수옮기기/리팩토링후2.ts",
     "test": "nodemon --exec 'mocha ch7/01-2.test.js'"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/node": "^20.4.8",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "typescript": "^5.1.6"
   }
 }
