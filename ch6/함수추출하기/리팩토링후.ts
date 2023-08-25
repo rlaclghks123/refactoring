@@ -1,24 +1,22 @@
+import { Invoice } from './리팩토링전';
+
 const printBanner = () => {
   console.log('*******************');
   console.log('***** 고객채무 *****');
   console.log('*******************');
 };
 
-const printDetail = (invoice, outstanding) => {
+const printDetail = (invoice: Invoice, outstanding: number) => {
   console.log(`고객명: ${invoice.customer}`);
   console.log(`채무액: ${outstanding}`);
   console.log(`마감일: ${invoice.dueDate?.toLocaleString()}`);
 };
 
-const calulateOutstanding = (invoice) => {
-  let result = 0;
-  for (const o of invoice.orders) {
-    result += o.amount;
-  }
-  return result;
+const calulateOutstanding = (invoice: Invoice) => {
+  return invoice.orders.reduce((acc, cur) => acc + cur.amount, 0);
 };
 
-const printOwing = (invoice) => {
+const printOwing = (invoice: Invoice) => {
   printBanner();
 
   const today = new Date();
