@@ -1,10 +1,16 @@
+import { Record } from './리팩토링전2';
+
 class Order {
-  constructor(aRecord) {
+  _data: Record;
+
+  constructor(aRecord: Record) {
     this._data = aRecord;
   }
+
   get quantity() {
     return this._data.quantity;
   }
+
   get itemPrice() {
     return this._data.itemPrice;
   }
