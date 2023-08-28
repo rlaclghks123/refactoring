@@ -1,4 +1,8 @@
-const rating = (aDriver) => (aDriver.numberOfLateDeliveries > 5 ? 2 : 1);
+interface Driver {
+  name: string;
+  numberOfLateDeliveries: number;
+}
+const rating = (aDriver: Driver) => (aDriver.numberOfLateDeliveries > 5 ? 2 : 1);
 
 const DriverA = { name: 'A', numberOfLateDeliveries: 10 };
 const DriverB = { name: 'B', numberOfLateDeliveries: 4 };
