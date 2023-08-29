@@ -1,5 +1,7 @@
 // 6.9 여러 함수를 클래스로 묶기
 
+import { ReadingProps } from './리팩토링전';
+
 // 1. data들을 클래스로 묶어준다.
 class Reading {
   _customer;
@@ -7,7 +9,7 @@ class Reading {
   _month;
   _year;
 
-  constructor(data) {
+  constructor(data: ReadingProps) {
     this._customer = data.customer;
     this._quantity = data.quantity;
     this._month = data.month;
@@ -36,7 +38,7 @@ class Reading {
   }
 }
 
-const baseRate = (month, year) => year - 2000 + month;
+const baseRate = (month: number, year: number) => year - 2000 + month;
 
 const acquireReading = () => ({
   customer: 'ivan',
