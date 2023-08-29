@@ -1,7 +1,14 @@
-// 매개변수 객체 만들기
+import { Station } from './리팩토링전';
+
+interface NumberRangeData {
+  min: number;
+  max: number;
+}
 
 class NumberRange {
-  constructor(min, max) {
+  _data: NumberRangeData;
+
+  constructor(min: number, max: number) {
     this._data = { min, max };
   }
 
@@ -13,7 +20,7 @@ class NumberRange {
     return this._data.max;
   }
 
-  contains(arg) {
+  contains(arg: number) {
     return arg >= this.min && arg <= this.max;
   }
 }
@@ -35,6 +42,6 @@ const operatingPlan = {
 
 const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling);
 
-const readingsOutsideRange = (station, range) =>
+const readingsOutsideRange = (station: Station, range: NumberRange) =>
   station.readings.filter((r) => !range.contains(r.temp));
 console.log(readingsOutsideRange(station, range));
