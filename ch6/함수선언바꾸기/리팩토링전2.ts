@@ -1,3 +1,8 @@
+export interface SomeCustomers {
+  name: string;
+  address: { state: string };
+}
+
 const someCustomers = [
   {
     name: 'roy',
@@ -29,10 +34,10 @@ const someCustomers = [
   },
 ];
 
-const inNewEngland = (stateCode) => {
-  return ['MA', 'CT', 'ME', 'VT', 'NH', 'RI'].includes(stateCode);
+const inNewEngland = (aCustomer: SomeCustomers) => {
+  return ['MA', 'CT', 'ME', 'VT', 'NH', 'RI'].includes(aCustomer.address.state);
 };
 
-const newEnglanders = someCustomers.filter((c) => inNewEngland(c.address.state));
+const newEnglanders = someCustomers.filter((c) => inNewEngland(c));
 
 console.log(newEnglanders);
