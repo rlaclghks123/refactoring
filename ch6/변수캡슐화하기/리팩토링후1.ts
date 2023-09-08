@@ -1,9 +1,10 @@
+import { SetDefaultOwnerProps } from './리팩토링전1';
+
 let defaultOwner = { firstName: '마틴', lastName: '파울러' };
 
 const getDefaultOwner = () => defaultOwner;
-const setDefaultOwner = (arg) => {
-  defaultOwner = arg;
-};
+
+const setDefaultOwner = (arg: SetDefaultOwnerProps) => (defaultOwner = arg);
 
 const spaceship = {
   owner: getDefaultOwner(),
