@@ -1,7 +1,8 @@
 import cloneDeep from 'lodash/cloneDeep.js';
-import { enrichReading } from './10.js';
+
 import { assert } from 'chai';
 import { it } from 'mocha';
+import { enrichReading } from './리팩토링후';
 
 it('check reading unchanged', () => {
   const baseReading = {

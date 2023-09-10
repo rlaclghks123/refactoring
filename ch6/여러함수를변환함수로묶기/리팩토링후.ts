@@ -1,4 +1,10 @@
 import cloneDeep from 'lodash/cloneDeep.js';
+import { ReadingProps } from '../여러함수를클래스로묶기/리팩토링전';
+
+interface Oiriginal extends ReadingProps {
+  baseCharge?: number;
+  taxableCharge?: number;
+}
 
 const acquireReading = () => ({
   customer: 'ivan',
@@ -6,14 +12,16 @@ const acquireReading = () => ({
   month: 5,
   year: 2017,
 });
-const baseRate = (month, year) => year - 2000 + month;
 
-const calculateBaseCharge = (aReading) =>
-  baseRate(aReading.month, aReading.year) * aReading.quantity;
+const baseRate = (month: number, year: number) => year - 2000 + month;
 
-const taxThreshold = (year) => (year - 2000) * 0.1;
+const calculateBaseCharge = (aReading: ReadingProps) => {
+  return baseRate(aReading.month, aReading.year) * aReading.quantity;
+};
 
-export function enrichReading(original) {
+const taxThreshold = (year: number) => (year - 2000) * 0.1;
+
+export function enrichReading(original: Oiriginal) {
   const result = cloneDeep(original);
   result.baseCharge = calculateBaseCharge(result);
   result.taxableCharge = Math.max(0, result.baseCharge - taxThreshold(result.year));
