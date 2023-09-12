@@ -1,13 +1,9 @@
-const COURSES = {
-  korean: { basic: 'korean', advanced: 'korean advanced' },
-  english: { basic: 'english', advanced: 'english advanced' },
-  mathematics: { basic: 'mathematics', advanced: 'mathematics advanced' },
-};
+import { COURSES, CourseInfo } from './리팩토링전';
 
 class Person {
   _name = '';
-  _courses = [];
-  constructor(name) {
+  _courses: Course[] = [];
+  constructor(name: string) {
     this._name = name;
   }
   get name() {
@@ -17,12 +13,14 @@ class Person {
     return [...this._courses];
   }
 
-  addCourse(aCourse) {
+  // 추가
+  addCourse(aCourse: Course) {
     this._courses.push(aCourse);
   }
 
+  // 추가
   removeCourse(
-    aCourse,
+    aCourse: Course,
     fnIfAbsent = () => {
       throw new RangeError();
     }
@@ -36,7 +34,7 @@ class Person {
 class Course {
   _name = '';
   _isAdvanced = false;
-  constructor(name, isAdvanced) {
+  constructor(name: string, isAdvanced: boolean) {
     this._name = name;
     this._isAdvanced = isAdvanced;
   }
@@ -48,7 +46,8 @@ class Course {
   }
 }
 
-const readBasicCourseNames = (filename) => Object.values(filename).map((c) => c.basic);
+const readBasicCourseNames = (filename: Record<string, CourseInfo>) =>
+  Object.values(filename).map((c) => c.basic);
 
 const client1 = () => {
   const aPerson = new Person('파울러');
