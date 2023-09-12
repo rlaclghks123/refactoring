@@ -5,6 +5,8 @@ export interface PhotosInterface {
   url: string;
 }
 
+// type PhotosInterface = typeof photos;
+
 export interface OutStreamInterface {
   res: string;
   write: (text: string) => void;
@@ -21,6 +23,7 @@ const recentDateCutoff = () => previousDateFromNow(3);
 const renderPhoto = (outStream: OutStreamInterface, aPhoto: PhotosInterface) => {
   outStream.write(`<img src="${aPhoto.url}" />`);
 };
+
 const emitPhotoData = (outStream: OutStreamInterface, photo: PhotosInterface) => {
   outStream.write(`<p>제목: ${photo.title}</p>`);
   outStream.write(`<p>날짜: ${photo.date.toDateString()}</p>`);
@@ -56,12 +59,14 @@ const photos = [
     url: 'http://abc.com/8',
   },
 ];
+
 const outstream = {
   res: '',
   write(text: string) {
     this.res += text;
   },
 };
+
 outstream.write('** renderPerson **\n');
 renderPerson(outstream, { name: '재남', photo: photos[0] });
 outstream.write('\n\n** listRecentPhotos **\n');

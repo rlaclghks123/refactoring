@@ -1,26 +1,23 @@
+// 의존성 주입으로 수정해봄
+
 class Customer {
   _name: string;
-  _discountRate: number;
   _contract: CustomerContract;
 
-  constructor(name: string, discountRate: number) {
+  constructor(name: string, contract: CustomerContract) {
     this._name = name;
-    this._contract = new CustomerContract(new Date(), discountRate);
-    this._setDiscountRate(discountRate);
+    this._contract = contract;
   }
 
   get discountRate() {
     return this._contract.discountRate;
   }
 
-  _setDiscountRate(aNumber: number) {
-    this._contract.discountRate = aNumber;
-  }
-
   becomePreferred() {
     this._contract.discountRate += 0.03;
     // do other stuff
   }
+
   applyDiscount(amount: any) {
     return amount.subtract(amount.multiply(this.discountRate));
   }
@@ -44,6 +41,8 @@ export class CustomerContract {
   }
 }
 
-const customer1 = new Customer('재남', 0.1);
+const customer1Contract = new CustomerContract(new Date(), 0.1);
+const customer1 = new Customer('재남', customer1Contract);
 customer1.becomePreferred();
 console.log(customer1.discountRate);
+//

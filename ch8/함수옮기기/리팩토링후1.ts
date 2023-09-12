@@ -9,11 +9,7 @@
 //3. 변수이름과 함수이름이 같으므로 인라인 해준다.
 
 const calculateDistance = (points: number[]) => {
-  let result = 0;
-  for (let i = 1; i < points.length; i++) {
-    result += distance(points[i - 1], points[i]);
-  }
-  return result;
+  return points.reduce((a, c, i) => (i === 0 ? 0 : a + distance(points[i - 1], c)), 1);
 };
 
 const distance = (p1: number, p2: number) => Math.abs(p1 - p2);

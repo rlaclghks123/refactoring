@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import { describe, it } from 'mocha';
-import { getCustomerData, writeData, compareUsage } from './01-2.js';
+import { getCustomerData, writeData, compareUsage } from './7.1레코드캘슐화하기/리팩토링후2.ts';
 
 describe('customerData', () => {
   it('initial usage of 1920 at 2016/1 to be 50', () => {

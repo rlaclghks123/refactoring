@@ -1,7 +1,7 @@
 export class Account {
-  _number: number;
-  _type: AccountType;
-  _interestRate: number;
+  _number;
+  _type;
+  _interestRate;
 
   constructor(number: number, type: AccountType, interestRate: number) {
     this._number = number;

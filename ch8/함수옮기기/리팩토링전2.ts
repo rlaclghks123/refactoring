@@ -1,12 +1,8 @@
-interface AccountBeforeType {
-  isPremium: boolean;
-}
-
-class AccountBefore {
+class Account {
   daysOverdrawn;
   type = { isPremium: false };
 
-  constructor(daysOverdrawn: number, type: AccountBeforeType) {
+  constructor(daysOverdrawn: number, type: { isPremium: boolean }) {
     this.daysOverdrawn = daysOverdrawn;
     this.type = type;
   }
@@ -26,8 +22,10 @@ class AccountBefore {
   }
 }
 
-const loan1 = new AccountBefore(10, { isPremium: true });
-const repo1 = new AccountBefore(10, { isPremium: false });
+const loan1 = new Account(10, { isPremium: true });
+const repo1 = new Account(10, { isPremium: false });
 
 console.log({ name: 'loan', charge: loan1.bankCharge, overdraftCharge: loan1.overdraftCharge });
 console.log({ name: 'repo', charge: repo1.bankCharge, overdraftCharge: repo1.overdraftCharge });
+
+export {};
