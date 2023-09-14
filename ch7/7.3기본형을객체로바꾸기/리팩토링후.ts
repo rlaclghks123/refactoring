@@ -1,19 +1,20 @@
 class Order {
-  #priority;
-  constructor(data) {
-    this.#priority = new Priority(data.priority);
+  _priority: Priority;
+
+  constructor(data: { priority: string }) {
+    this._priority = new Priority(data.priority);
   }
 
   get priority() {
-    return this.#priority;
+    return this._priority;
   }
 
   set priority(aString) {
-    this.#priority = new Priority(aString);
+    this._priority = new Priority(aString);
   }
 
   get priorityString() {
-    return this.#priority.toString();
+    return this._priority.toString();
   }
 }
 
@@ -21,33 +22,31 @@ class Priority {
   static legalValues() {
     return ['low', 'normal', 'high', 'rush'];
   }
+  _value;
 
-  #value;
-
-  constructor(value) {
+  constructor(value: string | Priority) {
     if (value instanceof Priority) return value;
-    if (Priority.legalValues().includes(value)) this.#value = value;
+    if (Priority.legalValues().includes(value)) this._value = value;
     else throw new Error(`<${value}>는 유효하지 않은 우선순위 입니다`);
-
-    this.#value = value;
   }
 
   toString() {
-    return this.#value;
-  }
-  get _index() {
-    return Priority.legalValues().findIndex((s) => s === this.#value);
+    return this._value;
   }
 
-  equals(other) {
+  get _index() {
+    return Priority.legalValues().findIndex((s) => s === this._value);
+  }
+
+  equals(other: Priority) {
     return this._index === other._index;
   }
 
-  higherThan(other) {
+  higherThan(other: Priority) {
     return this._index > other._index;
   }
 
-  lowerThen(other) {
+  lowerThan(other: Priority) {
     return this._index < other._index;
   }
 }
@@ -65,4 +64,5 @@ const client1 = () => {
   ).length;
   return highPriorityCount;
 };
+
 console.log(client1());
