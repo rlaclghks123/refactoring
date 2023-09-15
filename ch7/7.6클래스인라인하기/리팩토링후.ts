@@ -1,7 +1,7 @@
 // 불필요하다고 판단한 TrackingInformation 클래스를 Shipment 클래스로 인라인 하기
 class Shipment {
-  _shippingCompany;
-  _trackingNumber;
+  _shippingCompany: string = '';
+  _trackingNumber: string = '';
 
   get trackingInfo() {
     return `${this.shippingCompany}: ${this.trackingNumber}`;
@@ -21,7 +21,7 @@ class Shipment {
   }
 }
 
-const client1 = () => {
+const client2 = () => {
   const aShipment = new Shipment();
   const vendor = { name: 'A-SHIP', number: '010-1234-5678' };
   aShipment.shippingCompany = vendor.name;
@@ -29,4 +29,4 @@ const client1 = () => {
   return aShipment.trackingInfo;
 };
 
-console.log(client1());
+console.log(client2());

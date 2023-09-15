@@ -1,6 +1,7 @@
 class TrackingInformation {
-  _shippingCompany;
-  _trackingNumber;
+  _shippingCompany?: string;
+  _trackingNumber?: string;
+
   get shippingCompany() {
     return this._shippingCompany;
   }
@@ -42,3 +43,5 @@ const client1 = () => {
   return aShipment.trackingInfo;
 };
 console.log(client1());
+
+export {};
