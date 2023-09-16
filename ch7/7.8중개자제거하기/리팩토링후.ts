@@ -1,7 +1,7 @@
-class Person {
+class Person2 {
   _name;
   _department;
-  constructor(name, department) {
+  constructor(name: string, department: Department2) {
     this._name = name;
     this._department = department;
   }
@@ -14,9 +14,9 @@ class Person {
   }
 }
 
-class Department {
+class Department2 {
   _manager;
-  constructor(manager) {
+  constructor(manager: string) {
     this._manager = manager;
   }
   get manager() {
@@ -24,5 +24,5 @@ class Department {
   }
 }
 
-const jn = new Person('재남', new Department('로이'));
-console.log(jn.department.manager);
+const jn2 = new Person2('재남', new Department2('로이'));
+console.log(jn2.department.manager);
