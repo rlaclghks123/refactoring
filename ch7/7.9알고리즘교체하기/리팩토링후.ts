@@ -1,4 +1,4 @@
-const findPerson = (people) => {
+const findPerson = (people: string[]) => {
   const candidate = ['Don', 'John', 'Kent'];
   return people.find((person) => candidate.includes(person)) || '';
 };
