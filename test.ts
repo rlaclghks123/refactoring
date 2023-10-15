@@ -162,6 +162,34 @@ function example3(this: Document, a: string, b: 'this') {
   console.log(this, 'hello', 'this');
 }
 
-example3('hello', 'this'); // 'void' 형식의 'this' 컨텍스트를 메서드의 'Document' 형식 'this'에 할당할 수 없습니다.
 
-example3.call(Document);
+example3('ㅁㄴ', 'this'); // 'void' 형식의 'this' 컨텍스트를 메서드의 'Document' 형식 'this'에 할당할 수 없습니다.
+
+example3.call(document,'ㅁㄴ','this');
+
+function cbTest(cb:(num:number, str:string)=>void){};
+
+cbTest((num,str)=>{});
+cbTest(() => {});
+cbTest(() => true); // void이므로 결과값 무시
+cbTest(() => 5125); // void이므로 결과값 무시
+
+// function cbTest(cb:(num?:number, str?:string)=>void){}; 콜백함수는 옵셔널?로 만들면 안된다.
+
+
+function narrowFn(x: string): number {
+  return 0;
+}
+type wideType = (x: string) => string | number 
+let nwtest:wideType = narrowFn; // 문제없음 
+
+// narrow -> wide에 대입가능,  T<narrow 반환값> -> T<Wide 반환값> -> 공변성 
+
+
+function wideFn(x: string): string | number  {
+  return 0;
+}
+
+type narrowType = (x: string) => string;
+
+let nwtest2: narrowType = wideFn; // 문제발생 // narrow -> wide에 대입가능,  T<narrow 반환값> -> T<Wide 반환값>
